@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GQL.Structure
 {
-    class SimpleExpression : ISimpleExpression
+    class SimpleExpression : PredicateExpression, ISimpleExpression
     {
         /// <summary>
         /// 
@@ -19,13 +19,13 @@ namespace GQL.Structure
             Right = right;
         }
 
-        public IValueExpression Left { get; protected set; }
+        public IValueExpression Left { get; }
 
-        public IValuePredicate Predicate { get; protected set; }
+        public IValuePredicate Predicate { get; }
 
-        public IValueExpression Right { get; protected set; }
+        public IValueExpression Right { get; }
 
-        public bool AlwaysTrue
+        public override bool AlwaysTrue
         {
             get
             {
@@ -38,7 +38,7 @@ namespace GQL.Structure
             }
         }
 
-        public bool AlwaysFalse
+        public override bool AlwaysFalse
         {
             get
             {
@@ -51,12 +51,12 @@ namespace GQL.Structure
             }
         }
 
-        public int PlaceholderCount
+        public override int PlaceholderCount
         {
             get { return Right.PlaceholderCount; }
         }
 
-        public bool Match(Func<string, object> getter)
+        public override bool Match(Func<string, object> getter)
         {
             if (AlwaysTrue)
             {

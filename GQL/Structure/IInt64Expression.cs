@@ -5,13 +5,13 @@ using System.Text;
 namespace GQL.Structure
 {
     /// <summary>
-    /// 谓词
+    /// 
     /// </summary>
-    public interface IPredicate
+    public interface IInt64Expression : INumberExpression
     {
         /// <summary>
-        /// 谓词的中文名称
+        /// 
         /// </summary>
-        string Name { get; }
+        new long Value { get; }
     }
 }

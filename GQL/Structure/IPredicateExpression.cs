@@ -20,6 +20,11 @@ namespace GQL.Structure
         bool AlwaysFalse { get; }
 
         /// <summary>
+        /// 转为一个委托
+        /// </summary>
+        Func<Func<string, object>, bool> Function { get; }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="getter"></param>

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GQL.Structure
 {
-    class MultiExpression : IMultiExpression
+    class MultiExpression : PredicateExpression, IMultiExpression
     {
         public MultiExpression(IPredicateExpression left, LogicalPredicate predicate, IPredicateExpression right)
         {
@@ -19,7 +17,7 @@ namespace GQL.Structure
 
         public IPredicateExpression Right { get; protected set; }
 
-        public bool AlwaysTrue
+        public override bool AlwaysTrue
         {
             get
             {
@@ -46,7 +44,7 @@ namespace GQL.Structure
             }
         }
 
-        public bool AlwaysFalse
+        public override bool AlwaysFalse
         {
             get
             {
@@ -73,7 +71,7 @@ namespace GQL.Structure
             }
         }
 
-        public int PlaceholderCount
+        public override int PlaceholderCount
         {
             get
             {
@@ -81,7 +79,7 @@ namespace GQL.Structure
             }
         }
 
-        public bool Match(Func<string, object> getter)
+        public override bool Match(Func<string, object> getter)
         {
             if (AlwaysTrue)
             {
@@ -112,6 +110,20 @@ namespace GQL.Structure
                 return (left && right) || (!left && !right);
             }
             return false;
+        }
+
+        public override string ToString()
+        {
+            return $"{Left} {Predicate} {ToString(Right)}";
+        }
+
+        private string ToString(IPredicateExpression predicateExpression)
+        {
+            if (predicateExpression is ISimpleExpression || predicateExpression is INegativeExpression)
+            {
+                return predicateExpression.ToString();
+            }
+            return $"({predicateExpression})";
         }
     }
 }
