@@ -116,8 +116,7 @@ namespace GQL.Structure
 
         protected virtual bool EqualsBy(object left)
         {
-            // TODO，完善Message
-            throw new ArgumentException();
+            throw new ArgumentException($"当前值的类型为{Type.GetName()}，无法与{EqualsPredicate.Instance.Name}相匹配");
         }
 
         protected virtual bool UnequalsBy(object left)

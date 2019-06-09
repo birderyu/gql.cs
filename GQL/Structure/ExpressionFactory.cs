@@ -1,8 +1,18 @@
 ﻿namespace GQL.Structure
 {
-    public class ExpressionFactory
+    public static class ExpressionFactory
     {
-        public INullExpression BuildNull()
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly IValuePredicate EqualPredicate = Structure.EqualPredicate.Instance;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly IValuePredicate UnEqualPredicate = Structure.UnequalPredicate.Instance;
+
+        public static INullExpression BuildNull()
         {
             return NullExpression.Instance;
         }

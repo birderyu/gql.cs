@@ -17,7 +17,7 @@ namespace GQL.Structure
         /// <summary>
         /// 谓词
         /// </summary>
-        LogicalPredicate Predicate { get; }
+        ILogicalPredicate Predicate { get; }
 
         /// <summary>
         /// 右值

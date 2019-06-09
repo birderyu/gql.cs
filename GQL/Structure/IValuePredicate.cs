@@ -13,5 +13,11 @@ namespace GQL.Structure
         /// 类型
         /// </summary>
         ValuePredicateType Type { get; }
+
+        /// <summary>
+        /// 获取当前值谓词的逆运算谓词，若无则返回null
+        /// </summary>
+        /// <value>The inverse.</value>
+        IValuePredicate Inverse { get; }
     }
 }
